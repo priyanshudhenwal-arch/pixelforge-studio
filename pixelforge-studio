@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixelForge Studio — Image Editor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h1>PixelForge Studio</h1>
+    </div>
+    <div class="topbar-actions">
+      <label for="uploadInput" class="btn btn-secondary">Upload Image</label>
+      <input type="file" id="uploadInput" accept="image/*" hidden />
+      <button id="compareBtn" class="btn btn-secondary" disabled>Hold to Compare</button>
+      <button id="resetBtn" class="btn btn-danger" disabled>Reset</button>
+      <button id="downloadBtn" class="btn btn-primary" disabled>Export</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <!-- Left Sidebar: Controls -->
+    <aside class="sidebar">
+      <section class="panel">
+        <h2>Presets</h2>
+        <div class="preset-grid">
+          <button class="preset-btn active" data-preset="original">Original</button>
+          <button class="preset-btn" data-preset="noir">Noir</button>
+          <button class="preset-btn" data-preset="vintage">Vintage</button>
+          <button class="preset-btn" data-preset="warm">Warm</button>
+          <button class="preset-btn" data-preset="cool">Cool</button>
+          <button class="preset-btn" data-preset="vivid">Vivid</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Adjustments</h2>
+        <div class="control">
+          <div class="control-label"><span>Brightness</span><span id="brightnessVal">100%</span></div>
+          <input type="range" id="brightness" min="0" max="200" value="100" />
+        </div>
+        <div class="control">
+          <div class="control-label"><span>Contrast</span><span id="contrastVal">100%</span></div>
+          <input type="range" id="contrast" min="0" max="200" value="100" />
+        </div>
+        <div class="control">
+          <div class="control-label"><span>Saturation</span><span id="saturateVal">100%</span></div>
+          <input type="range" id="saturate" min="0" max="200" value="100" />
+        </div>
+        <div class="control">
+          <div class="control-label"><span>Grayscale</span><span id="grayscaleVal">0%</span></div>
+          <input type="range" id="grayscale" min="0" max="100" value="0" />
+        </div>
+        <div class="control">
+          <div class="control-label"><span>Sepia</span><span id="sepiaVal">0%</span></div>
+          <input type="range" id="sepia" min="0" max="100" value="0" />
+        </div>
+        <div class="control">
+          <div class="control-label"><span>Hue Rotate</span><span id="hueVal">0°</span></div>
+          <input type="range" id="hue" min="0" max="360" value="0" />
+        </div>
+        <div class="control">
+          <div class="control-label"><span>Blur</span><span id="blurVal">0px</span></div>
+          <input type="range" id="blur" min="0" max="20" step="0.5" value="0" />
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Transform</h2>
+        <div class="transform-grid">
+          <button id="rotateLeft" class="btn btn-secondary">↺ -90°</button>
+          <button id="rotateRight" class="btn btn-secondary">↻ +90°</button>
+          <button id="flipH" class="btn btn-secondary">⇄ Flip H</button>
+          <button id="flipV" class="btn btn-secondary">⇅ Flip V</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Export Settings</h2>
+        <div class="control">
+          <div class="control-label"><span>Format</span></div>
+          <select id="exportFormat">
+            <option value="image/png">PNG (Lossless)</option>
+            <option value="image/jpeg">JPEG (Smaller)</option>
+            <option value="image/webp">WebP (Modern)</option>
+          </select>
+        </div>
+        <div class="control">
+          <div class="control-label"><span>Quality</span><span id="qualityVal">92%</span></div>
+          <input type="range" id="exportQuality" min="10" max="100" value="92" />
+        </div>
+      </section>
+    </aside>
+
+    <!-- Center Stage: Canvas -->
+    <section class="canvas-stage" id="dropZone">
+      <div class="empty-state" id="emptyState">
+        <p class="empty-title">Drop an image here</p>
+        <p class="empty-sub">or click <strong>Upload Image</strong> above (PNG, JPG, WebP)</p>
+      </div>
+      <canvas id="editorCanvas" hidden></canvas>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
